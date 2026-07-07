@@ -22,6 +22,13 @@
 <link rel="icon" href="assets/favicon-64.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/logo-512.png">
 <link rel="stylesheet" href="style.css">
+<script>
+  (function () {
+    var saved = localStorage.getItem("theme");
+    var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    document.documentElement.setAttribute("data-theme", saved || (prefersDark ? "dark" : "light"));
+  })();
+</script>
 </head>
 <body>
 
@@ -37,6 +44,9 @@
       <a href="#sss">SSS</a>
       <a href="#iletisim">İletişim</a>
     </nav>
+    <button class="theme-toggle" id="themeToggle" role="switch" aria-checked="false" aria-label="Karanlık modu aç/kapat">
+      <span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span>
+    </button>
     <a href="#iletisim" class="nav-cta">İletişime Geç</a>
     <button class="menu-toggle" id="menuToggle" aria-label="Menüyü aç">
       <span></span><span></span><span></span>

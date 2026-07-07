@@ -1,3 +1,22 @@
+// Dark mode toggle
+const themeToggle = document.getElementById("themeToggle");
+const root = document.documentElement;
+
+function applyTheme(theme) {
+  root.setAttribute("data-theme", theme);
+  themeToggle.setAttribute("aria-checked", theme === "dark" ? "true" : "false");
+}
+
+const savedTheme = localStorage.getItem("theme");
+const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+applyTheme(savedTheme || (systemPrefersDark ? "dark" : "light"));
+
+themeToggle.addEventListener("click", () => {
+  const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  applyTheme(next);
+  localStorage.setItem("theme", next);
+});
+
 // Mobile menu toggle
 const menuToggle = document.getElementById("menuToggle");
 const navMobile = document.getElementById("navMobile");
