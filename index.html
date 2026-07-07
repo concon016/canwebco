@@ -150,6 +150,18 @@
           <span class="contact-value">@mcd.network</span>
         </a>
       </div>
+
+      <form class="contact-form" id="contactForm">
+        <input type="hidden" name="access_key" value="ebf6b3e2-e45d-43af-aa3c-7072c4787fe0">
+        <input type="checkbox" name="botcheck" class="hidden-field" style="display:none">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Adınız" required>
+          <input type="email" name="email" placeholder="E-posta adresiniz" required>
+        </div>
+        <textarea name="message" placeholder="Mesajınız" rows="4" required></textarea>
+        <button type="submit" class="btn btn-primary form-submit">Gönder</button>
+        <p class="form-status" id="formStatus"></p>
+      </form>
     </div>
   </section>
 
