@@ -38,20 +38,31 @@ ul { margin: 0; padding: 0; list-style: none; }
 .nav-inner {
   max-width: var(--max);
   margin: 0 auto;
-  height: 52px;
-  padding: 0 24px;
+  padding: 10px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .logo {
+  display: flex;
+  align-items: center;
   font-size: 19px;
   font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--text);
 }
-.logo span { color: var(--text-soft); font-weight: 400; }
+
+.logo-word { white-space: nowrap; }
+.logo-dim { color: var(--text-soft); font-weight: 400; }
+
+.logo-icon {
+  height: 5.4em;
+  width: 5.4em;
+  margin-right: 0.35em;
+  object-fit: contain;
+  border-radius: 6px;
+}
 
 .nav-links {
   display: flex;
