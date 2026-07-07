@@ -345,12 +345,9 @@ section { padding: 100px 24px; }
 
 /* Why */
 .why-inner {
-  max-width: var(--max);
+  max-width: 820px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 60px;
-  align-items: center;
+  text-align: center;
 }
 
 .why-text h2 {
@@ -364,32 +361,9 @@ section { padding: 100px 24px; }
   font-size: 17px;
   color: var(--text-soft);
   line-height: 1.6;
-  max-width: 440px;
-}
-
-.why-stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-.stat {
-  background: var(--bg-soft);
-  border-radius: var(--radius);
-  padding: 28px 16px;
-  text-align: center;
-}
-.stat-num {
-  display: block;
-  font-size: 34px;
-  font-weight: 700;
-  color: var(--accent);
-  letter-spacing: -0.02em;
-}
-.stat-label {
-  display: block;
-  font-size: 13px;
-  color: var(--text-soft);
-  margin-top: 6px;
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: justify;
 }
 
 /* FAQ */
@@ -570,11 +544,6 @@ section { padding: 100px 24px; }
 }
 
 /* Responsive */
-@media (max-width: 900px) {
-  .why-inner { grid-template-columns: 1fr; }
-  .why-stats { grid-template-columns: repeat(3, 1fr); }
-}
-
 @media (max-width: 720px) {
   .nav-links, .nav-cta { display: none; }
   .menu-toggle { display: flex; }
