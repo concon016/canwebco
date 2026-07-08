@@ -385,6 +385,8 @@ section { padding: 100px 24px; }
 }
 
 /* Why */
+.why { padding-bottom: 220px; }
+
 .why-inner {
   max-width: 820px;
   margin: 0 auto;
@@ -407,28 +409,6 @@ section { padding: 100px 24px; }
   text-align: justify;
 }
 .why-text p:last-of-type { margin-bottom: 0; }
-
-.why-list {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 420px;
-  margin: 32px auto 0;
-  text-align: left;
-}
-.why-list li {
-  font-size: 15px;
-  color: var(--text);
-  padding-left: 24px;
-  position: relative;
-}
-.why-list li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-  font-weight: 700;
-}
 
 /* Process */
 .process { background: var(--bg-soft); }
@@ -786,4 +766,5 @@ section { padding: 100px 24px; }
   .br-desktop { display: inline; }
   section { padding: 72px 20px; }
   .hero { padding: 96px 20px 72px; }
+  .why { padding-bottom: 120px; }
 }
