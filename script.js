@@ -180,3 +180,30 @@ if (priceTryEls.length) {
       });
   }
 }
+
+// Live viewer count badge
+const viewerCountEl = document.getElementById("viewer-count");
+if (viewerCountEl) {
+  const VIEWER_MIN = 122;
+  const VIEWER_MAX = 198;
+
+  const randomBetween = (min, max) =>
+    Math.floor(Math.random() * (max - min + 1)) + min;
+
+  viewerCountEl.textContent = randomBetween(VIEWER_MIN, VIEWER_MAX);
+
+  const scheduleViewerUpdate = () => {
+    const delay = randomBetween(3000, 7000);
+    setTimeout(() => {
+      const current = parseInt(viewerCountEl.textContent, 10);
+      const next = Math.min(
+        VIEWER_MAX,
+        Math.max(VIEWER_MIN, current + randomBetween(-12, 12))
+      );
+      viewerCountEl.textContent = next;
+      scheduleViewerUpdate();
+    }, delay);
+  };
+
+  scheduleViewerUpdate();
+}
