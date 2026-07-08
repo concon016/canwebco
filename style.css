@@ -19,7 +19,11 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  background: var(--bg);
+  transition: background-color 0.3s ease;
+}
 
 body {
   margin: 0;
