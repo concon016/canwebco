@@ -403,6 +403,16 @@ section { padding: 100px 24px; }
   margin-right: 6px;
 }
 
+.price .price-try {
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-soft);
+  text-align: right;
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
 .service-desc {
   color: var(--text-soft);
   font-size: 15px;

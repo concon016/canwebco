@@ -139,3 +139,44 @@ if (contactForm) {
     }
   });
 }
+
+// Dolar fiyatların altına güncel kurdan TL karşılığını ekler (fiyat kartı olan sayfalarda çalışır)
+const priceTryEls = document.querySelectorAll(".price-try[data-usd]");
+if (priceTryEls.length) {
+  const RATE_CACHE_KEY = "mcdnet_usdtry_rate";
+  const RATE_CACHE_TS_KEY = "mcdnet_usdtry_ts";
+  const RATE_CACHE_TTL = 12 * 60 * 60 * 1000; // 12 saat sonra kur tazelenir
+  const FALLBACK_RATE = 47; // API'ye hiç ulaşılamazsa ve önbellek de yoksa kullanılacak yaklaşık kur
+
+  const renderTryPrices = (rate) => {
+    priceTryEls.forEach((el) => {
+      const usd = parseFloat(el.dataset.usd);
+      if (!isNaN(usd)) {
+        const tl = Math.round(usd * rate);
+        el.textContent = `≈ ${tl.toLocaleString("tr-TR")} ₺`;
+      }
+    });
+  };
+
+  const cachedRate = parseFloat(localStorage.getItem(RATE_CACHE_KEY));
+  const cachedTs = parseInt(localStorage.getItem(RATE_CACHE_TS_KEY), 10);
+  const isFresh = cachedTs && Date.now() - cachedTs < RATE_CACHE_TTL;
+
+  renderTryPrices(cachedRate || FALLBACK_RATE);
+
+  if (!isFresh) {
+    fetch("https://open.er-api.com/v6/latest/USD")
+      .then((res) => res.json())
+      .then((data) => {
+        const rate = data && data.rates && data.rates.TRY;
+        if (rate) {
+          localStorage.setItem(RATE_CACHE_KEY, rate);
+          localStorage.setItem(RATE_CACHE_TS_KEY, Date.now().toString());
+          renderTryPrices(rate);
+        }
+      })
+      .catch(() => {
+        // Kur alınamazsa önbellekteki/varsayılan değer zaten gösteriliyor, sessizce geç
+      });
+  }
+}
