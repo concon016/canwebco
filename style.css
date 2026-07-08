@@ -403,8 +403,31 @@ section { padding: 100px 24px; }
   color: var(--text-soft);
   line-height: 1.6;
   max-width: 680px;
-  margin: 0 auto;
+  margin: 0 auto 16px;
   text-align: justify;
+}
+.why-text p:last-of-type { margin-bottom: 0; }
+
+.why-list {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 420px;
+  margin: 32px auto 0;
+  text-align: left;
+}
+.why-list li {
+  font-size: 15px;
+  color: var(--text);
+  padding-left: 24px;
+  position: relative;
+}
+.why-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
 }
 
 /* Process */
