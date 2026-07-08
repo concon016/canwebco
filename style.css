@@ -744,6 +744,28 @@ section { padding: 100px 24px; }
   .whatsapp-float svg { width: 26px; height: 26px; }
 }
 
+/* 404 */
+.not-found { text-align: center; }
+.not-found-inner { max-width: 480px; margin: 0 auto; }
+.not-found-code {
+  font-size: 80px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+.not-found h1 {
+  font-size: clamp(26px, 4vw, 34px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 8px 0 12px;
+}
+.not-found > .not-found-inner > p {
+  color: var(--text-soft);
+  font-size: 17px;
+  margin: 0 0 32px;
+}
+
 /* Footer */
 .footer {
   text-align: center;
