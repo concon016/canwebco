@@ -615,6 +615,13 @@ section { padding: 100px 24px; }
   margin: 0 0 40px;
 }
 
+.contact-inner p.response-note {
+  font-size: 13px;
+  color: var(--text-soft);
+  opacity: 0.75;
+  margin: 0 0 32px;
+}
+
 .contact-methods {
   display: flex;
   flex-direction: column;
