@@ -413,6 +413,16 @@ section { padding: 100px 24px; }
   margin: 0;
 }
 
+.process-cta {
+  text-align: center;
+  margin: 56px auto 0;
+}
+.process-cta p {
+  font-size: 19px;
+  color: var(--text-soft);
+  margin: 0 0 20px;
+}
+
 @media (max-width: 860px) {
   .process-grid { grid-template-columns: repeat(2, 1fr); }
 }
