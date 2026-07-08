@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SSS — mcdnetwork</title>
-<meta name="description" content="mcdnetwork hizmetleri hakkında sık sorulan sorular: teslim süresi, alan adı, revizyon kapsamı, hosting ve ödeme.">
+<title>İletişim — mcdnetwork</title>
+<meta name="description" content="mcdnetwork ile iletişime geçin: e-posta, WhatsApp, Instagram veya iletişim formu üzerinden.">
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://mcd-network.vercel.app/sss.html">
-<meta property="og:title" content="SSS — mcdnetwork">
-<meta property="og:description" content="Hizmetler hakkında merak ettiklerin.">
+<meta property="og:url" content="https://mcd-network.vercel.app/iletisim.html">
+<meta property="og:title" content="İletişim — mcdnetwork">
+<meta property="og:description" content="Hangi hizmete ihtiyacınız olduğunu yazın, size dönüş yapalım.">
 <meta property="og:image" content="https://mcd-network.vercel.app/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="SSS — mcdnetwork">
-<meta name="twitter:description" content="Hizmetler hakkında merak ettiklerin.">
+<meta name="twitter:title" content="İletişim — mcdnetwork">
+<meta name="twitter:description" content="Hangi hizmete ihtiyacınız olduğunu yazın, size dönüş yapalım.">
 <meta name="twitter:image" content="https://mcd-network.vercel.app/assets/og-image.png">
 
 <link rel="icon" href="assets/favicon-64.png" type="image/png">
@@ -64,44 +64,36 @@
 
 <main>
 
-  <section class="faq" id="sss">
-    <div class="section-head reveal">
-      <h2>Sık Sorulan Sorular</h2>
-      <p>Merak ettiklerin muhtemelen burada.</p>
-    </div>
+  <section class="contact" id="iletisim">
+    <div class="contact-inner reveal">
+      <h2>Başlayalım.</h2>
+      <p>Hangi hizmete ihtiyacınız olduğunu yazın, size dönüş yapalım.</p>
+      <div class="contact-methods">
+        <a href="mailto:mehmetcandgn.2003@gmail.com" class="contact-item">
+          <span class="contact-label">E-posta</span>
+          <span class="contact-value">Mesaj gönder →</span>
+        </a>
+        <a href="https://wa.me/905324648288" class="contact-item" target="_blank" rel="noopener">
+          <span class="contact-label">WhatsApp</span>
+          <span class="contact-value">Sohbet başlat →</span>
+        </a>
+        <a href="https://instagram.com/mcdnetwork" class="contact-item" target="_blank" rel="noopener">
+          <span class="contact-label">Instagram</span>
+          <span class="contact-value">Profili görüntüle →</span>
+        </a>
+      </div>
 
-    <div class="faq-list reveal">
-
-      <details class="faq-item">
-        <summary>Web sitem ne kadar sürede hazır olur?</summary>
-        <p>İçerikler (metin, görsel) elimize ulaştıktan sonra çoğu site 2-4 iş günü içinde teslim edilir. Kapsam büyüdükçe süre de doğal olarak uzayabilir.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Alan adı (.com / .net) gerçekten fiyata dahil mi?</summary>
-        <p>Evet. $100'luk Web Sitesi Tasarımı paketine bir adet .com veya .net alan adı dahildir, ayrıca ücret ödemezsiniz.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Revizyon hizmeti neyi kapsıyor?</summary>
-        <p>Mevcut sitenizdeki metin, görsel veya küçük tasarım güncellemeleri $10 karşılığında yapılır. Yeni bir sayfa veya kapsamlı tasarım değişikliği ayrı bir teklif gerektirir.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Sitem nerede barınıyor, güvenilir mi?</summary>
-        <p>Siteler Vercel altyapısında barındırılır — hızlı, otomatik güvenlik sertifikalı (https) ve yüksek erişilebilirliğe sahip bir sistemdir.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Haritada Görünürlük hizmeti tam olarak ne yapıyor?</summary>
-        <p>İşletmenizin Google Maps, Apple Haritalar ve Yandex Haritalar'daki profillerini kurar, konum/saat/iletişim bilgilerinizi doğru şekilde girip her üç platformda da aranabilir hale getiririz.</p>
-      </details>
-
-      <details class="faq-item">
-        <summary>Ödemeyi nasıl yapıyorum?</summary>
-        <p>İletişime geçtiğinizde ihtiyacınıza göre kapsamı netleştirip size uygun ödeme yöntemini birlikte belirliyoruz.</p>
-      </details>
-
+      <form class="contact-form" id="contactForm">
+        <input type="hidden" name="access_key" value="ebf6b3e2-e45d-43af-aa3c-7072c4787fe0">
+        <input type="checkbox" name="botcheck" class="hidden-field" style="display:none">
+        <div class="form-row">
+          <input type="text" name="name" placeholder="Adınız" required>
+          <input type="email" name="email" placeholder="E-posta adresiniz" required>
+        </div>
+        <textarea name="message" placeholder="Mesajınız" rows="4" required></textarea>
+        <button type="submit" class="btn btn-primary form-submit">Gönder</button>
+        <p class="form-status" id="formStatus"></p>
+      </form>
     </div>
   </section>
 
