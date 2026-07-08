@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SSS — mcdnetwork</title>
+<meta name="description" content="mcdnetwork hizmetleri hakkında sık sorulan sorular: teslim süresi, alan adı, revizyon kapsamı, hosting ve ödeme.">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mcd-network.vercel.app/sss.html">
+<meta property="og:title" content="SSS — mcdnetwork">
+<meta property="og:description" content="Hizmetler hakkında merak ettiklerin.">
+<meta property="og:image" content="https://mcd-network.vercel.app/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SSS — mcdnetwork">
+<meta name="twitter:description" content="Hizmetler hakkında merak ettiklerin.">
+<meta name="twitter:image" content="https://mcd-network.vercel.app/assets/og-image.png">
+
+<link rel="icon" href="assets/favicon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/logo-512.png">
+<link rel="stylesheet" href="style.css">
+<script>
+  (function () {
+    var saved = localStorage.getItem("theme");
+    var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    document.documentElement.setAttribute("data-theme", saved || (prefersDark ? "dark" : "light"));
+  })();
+</script>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <img src="assets/logo-512.png" alt="mcdnetwork logosu" class="logo-icon" id="logoIcon">
+      <span class="logo-word">mcd<span class="logo-dim">network</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html#hizmetler">Hizmetler</a>
+      <a href="index.html#neden-biz">Neden Biz</a>
+      <a href="sss.html">SSS</a>
+      <a href="index.html#iletisim">İletişim</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" role="switch" aria-checked="false" aria-label="Karanlık modu aç/kapat">
+        <span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span>
+      </button>
+      <a href="index.html#iletisim" class="nav-cta">İletişime Geç</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menüyü aç">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="nav-mobile" id="navMobile">
+    <a href="index.html#hizmetler">Hizmetler</a>
+    <a href="index.html#neden-biz">Neden Biz</a>
+    <a href="sss.html">SSS</a>
+    <a href="index.html#iletisim">İletişim</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="faq" id="sss">
+    <div class="section-head reveal">
+      <h2>Sık Sorulan Sorular</h2>
+      <p>Merak ettiklerin muhtemelen burada.</p>
+    </div>
+
+    <div class="faq-list reveal">
+
+      <details class="faq-item">
+        <summary>Web sitem ne kadar sürede hazır olur?</summary>
+        <p>İçerikler (metin, görsel) elimize ulaştıktan sonra çoğu site 2-4 iş günü içinde teslim edilir. Kapsam büyüdükçe süre de doğal olarak uzayabilir.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Alan adı (.com / .net) gerçekten fiyata dahil mi?</summary>
+        <p>Evet. $100'luk Web Sitesi Tasarımı paketine bir adet .com veya .net alan adı dahildir, ayrıca ücret ödemezsiniz.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Revizyon hizmeti neyi kapsıyor?</summary>
+        <p>Mevcut sitenizdeki metin, görsel veya küçük tasarım güncellemeleri $10 karşılığında yapılır. Yeni bir sayfa veya kapsamlı tasarım değişikliği ayrı bir teklif gerektirir.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Sitem nerede barınıyor, güvenilir mi?</summary>
+        <p>Siteler Vercel altyapısında barındırılır — hızlı, otomatik güvenlik sertifikalı (https) ve yüksek erişilebilirliğe sahip bir sistemdir.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Haritada Görünürlük hizmeti tam olarak ne yapıyor?</summary>
+        <p>İşletmenizin Google Maps, Apple Haritalar ve Yandex Haritalar'daki profillerini kurar, konum/saat/iletişim bilgilerinizi doğru şekilde girip her üç platformda da aranabilir hale getiririz.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>Ödemeyi nasıl yapıyorum?</summary>
+        <p>İletişime geçtiğinizde ihtiyacınıza göre kapsamı netleştirip size uygun ödeme yöntemini birlikte belirliyoruz.</p>
+      </details>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>&copy; 2026 mcdnetwork</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/web-analytics/script.js"></script>
+</body>
+</html>
