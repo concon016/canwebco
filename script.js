@@ -46,6 +46,44 @@ const revealObserver = new IntersectionObserver(
 );
 revealEls.forEach((el) => revealObserver.observe(el));
 
+// Hero glow follows the cursor
+const hero = document.querySelector(".hero");
+const heroGlow = document.querySelector(".hero-glow");
+if (hero && heroGlow) {
+  hero.addEventListener("mousemove", (e) => {
+    const rect = hero.getBoundingClientRect();
+    const relX = (e.clientX - rect.left - rect.width / 2) / rect.width;
+    const relY = (e.clientY - rect.top) / rect.height;
+    heroGlow.style.setProperty("--glow-x", `${relX * 60}px`);
+    heroGlow.style.setProperty("--glow-y", `${relY * 40}px`);
+  });
+  hero.addEventListener("mouseleave", () => {
+    heroGlow.style.setProperty("--glow-x", "0px");
+    heroGlow.style.setProperty("--glow-y", "0px");
+  });
+}
+
+// Confetti burst
+function fireConfetti(originEl) {
+  const rect = originEl.getBoundingClientRect();
+  const originX = rect.left + rect.width / 2;
+  const originY = rect.top;
+  const colors = ["#0071e3", "#3ba55d", "#ffc23c", "#ff5533"];
+
+  for (let i = 0; i < 24; i++) {
+    const piece = document.createElement("div");
+    piece.className = "confetti-piece";
+    piece.style.left = `${originX}px`;
+    piece.style.top = `${originY}px`;
+    piece.style.background = colors[i % colors.length];
+    piece.style.setProperty("--x", `${(Math.random() - 0.5) * 260}px`);
+    piece.style.setProperty("--y", `${Math.random() * -180 - 40}px`);
+    piece.style.setProperty("--r", `${Math.random() * 360}deg`);
+    document.body.appendChild(piece);
+    setTimeout(() => piece.remove(), 1200);
+  }
+}
+
 // Contact form
 const contactForm = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
@@ -70,6 +108,7 @@ if (contactForm) {
       if (result.success) {
         formStatus.textContent = "Mesajınız gönderildi, en kısa sürede dönüş yapacağız.";
         formStatus.classList.add("success");
+        fireConfetti(submitBtn);
         contactForm.reset();
       } else {
         throw new Error(result.message || "Gönderim başarısız");

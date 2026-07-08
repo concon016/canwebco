@@ -270,11 +270,12 @@ ul { margin: 0; padding: 0; list-style: none; }
   position: absolute;
   top: -200px;
   left: 50%;
-  transform: translateX(-50%);
   width: 900px;
   height: 500px;
   background: radial-gradient(ellipse at center, rgba(0, 113, 227, 0.12), transparent 70%);
   pointer-events: none;
+  transform: translate(calc(-50% + var(--glow-x, 0px)), var(--glow-y, 0px));
+  transition: transform 0.4s ease-out;
 }
 
 /* Sections */
@@ -815,6 +816,21 @@ section { padding: 100px 24px; }
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Confetti */
+.confetti-piece {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 999;
+  animation: confetti-fall 1.1s ease-out forwards;
+}
+@keyframes confetti-fall {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  100% { transform: translate(var(--x), var(--y)) rotate(var(--r)); opacity: 0; }
 }
 
 /* Responsive */
