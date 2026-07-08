@@ -410,6 +410,14 @@ section { padding: 100px 24px; }
 }
 .why-text p:last-of-type { margin-bottom: 0; }
 
+.why-text p.why-closing {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--text);
+  text-align: center;
+  margin-top: 28px;
+}
+
 /* Process */
 .process { background: var(--bg-soft); }
 
