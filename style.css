@@ -659,6 +659,8 @@ section { padding: 100px 24px; }
 .portfolio-preview-astrolojivakti { background: linear-gradient(135deg, #0a0a0a, #e50914); }
 .portfolio-preview-ikitekeriz { background: linear-gradient(135deg, #0a0a0c, #ff6b1a); }
 .portfolio-preview-diyettemiyiz { background: linear-gradient(135deg, #2f9e6e, #ff8a5c); }
+.portfolio-preview-degeriniogren { background: linear-gradient(135deg, #1064bc, #ffe800); }
+.portfolio-preview-neredenyiyelim { background: linear-gradient(135deg, #1a0f0a, #d94f30); }
 
 .portfolio-live-badge {
   position: absolute;
