@@ -221,3 +221,26 @@ if (viewerCountEl) {
 
   scheduleViewerUpdate();
 }
+
+// GA4 conversion tracking: WhatsApp & email clicks
+document.querySelectorAll('a[href*="wa.me"]').forEach((link) => {
+  link.addEventListener("click", () => {
+    if (typeof gtag === "function") {
+      gtag("event", "whatsapp_click", {
+        event_category: "engagement",
+        event_label: window.location.pathname,
+      });
+    }
+  });
+});
+
+document.querySelectorAll('a[href^="mailto:"]').forEach((link) => {
+  link.addEventListener("click", () => {
+    if (typeof gtag === "function") {
+      gtag("event", "email_click", {
+        event_category: "engagement",
+        event_label: window.location.pathname,
+      });
+    }
+  });
+});
