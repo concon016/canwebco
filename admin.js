@@ -1,4 +1,4 @@
-/* mcdnetwork — admin paneli (gelen mesajlar) */
+/* canwebco — admin paneli (gelen mesajlar) */
 
 const ADMIN_KEY_STORAGE = "mcdnet_admin_key";
 
