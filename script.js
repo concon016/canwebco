@@ -223,8 +223,11 @@ if (viewerCountEl) {
 }
 
 // GA4 conversion tracking: WhatsApp & email clicks
-document.querySelectorAll('a[href*="wa.me"]').forEach((link) => {
+const waLinks = document.querySelectorAll('a[href*="wa.me"]');
+console.log("[GA4 debug] wa.me link sayısı:", waLinks.length);
+waLinks.forEach((link) => {
   link.addEventListener("click", () => {
+    console.log("[GA4 debug] whatsapp_click tetiklendi, gtag mevcut mu:", typeof gtag);
     if (typeof gtag === "function") {
       gtag("event", "whatsapp_click", {
         event_category: "engagement",
