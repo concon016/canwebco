@@ -116,6 +116,18 @@ if (contactForm) {
 
     const formData = Object.fromEntries(new FormData(contactForm));
 
+    // Mesajı admin panelinde de sakla — Web3Forms (e-posta) başarısız olsa bile
+    // mesaj kaybolmasın diye bu çağrı e-posta adımından bağımsız çalışır.
+    fetch("/api/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        adSoyad: formData.name,
+        eposta: formData.email,
+        mesaj: formData.message,
+      }),
+    }).catch((err) => console.error("Mesaj admin paneline kaydedilemedi:", err));
+
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -129,17 +141,6 @@ if (contactForm) {
         formStatus.classList.add("success");
         fireConfetti(submitBtn);
         contactForm.reset();
-
-        // En kısa sürede dönüş yapabilmemiz için mesajı admin panelinde de saklıyoruz (e-posta akışını etkilemez).
-        fetch("/api/messages", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            adSoyad: formData.name,
-            eposta: formData.email,
-            mesaj: formData.message,
-          }),
-        }).catch((err) => console.error("Mesaj admin paneline kaydedilemedi:", err));
       } else {
         throw new Error(result.message || "Gönderim başarısız");
       }
