@@ -655,6 +655,7 @@ section { padding: 100px 24px; }
 .portfolio-preview-diyettemiyiz { background: linear-gradient(135deg, #2f9e6e, #ff8a5c); }
 .portfolio-preview-degeriniogren { background: linear-gradient(135deg, #1064bc, #ffe800); }
 .portfolio-preview-neredenyiyelim { background: linear-gradient(135deg, #1a0f0a, #d94f30); }
+.portfolio-preview-anonimguzellik { background: linear-gradient(135deg, #8a6a4a, #b76e5b); }
 
 .portfolio-live-badge {
   position: absolute;
