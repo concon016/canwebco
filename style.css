@@ -233,8 +233,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   margin-bottom: 24px;
 }
 
-.availability-badge,
-.viewer-badge {
+.availability-badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -247,35 +246,19 @@ ul { margin: 0; padding: 0; list-style: none; }
   padding: 6px 14px;
 }
 
-.availability-dot,
-.viewer-dot {
+.availability-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-}
-
-.availability-dot {
   background: #34c759;
   box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.5);
   animation: availability-pulse 2s infinite;
-}
-
-.viewer-dot {
-  background: #0071e3;
-  box-shadow: 0 0 0 0 rgba(0, 113, 227, 0.5);
-  animation: viewer-pulse 2s infinite;
 }
 
 @keyframes availability-pulse {
   0% { box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.5); }
   70% { box-shadow: 0 0 0 6px rgba(52, 199, 89, 0); }
   100% { box-shadow: 0 0 0 0 rgba(52, 199, 89, 0); }
-}
-
-@keyframes viewer-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(0, 113, 227, 0.5); }
-  70% { box-shadow: 0 0 0 6px rgba(0, 113, 227, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(0, 113, 227, 0); }
 }
 
 .hero h1 {
