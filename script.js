@@ -7,7 +7,7 @@ window.addEventListener("scroll", () => {
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
   const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
   scrollProgress.style.width = pct + "%";
-});
+}, { passive: true });
 
 // Tab title trick
 const originalTitle = document.title;
@@ -67,13 +67,33 @@ revealEls.forEach((el) => revealObserver.observe(el));
 const hero = document.querySelector(".hero");
 const heroGlow = document.querySelector(".hero-glow");
 if (hero && heroGlow) {
-  hero.addEventListener("mousemove", (e) => {
-    const rect = hero.getBoundingClientRect();
-    const relX = (e.clientX - rect.left - rect.width / 2) / rect.width;
-    const relY = (e.clientY - rect.top) / rect.height;
+  // mousemove sadece koordinatları yazar; getBoundingClientRect (layout okuma)
+  // ve stil yazma işlemi requestAnimationFrame içinde, saniyede en fazla bir kez yapılır.
+  let heroRect = hero.getBoundingClientRect();
+  let pendingX = null;
+  let pendingY = null;
+  let glowTicking = false;
+
+  window.addEventListener("resize", () => { heroRect = hero.getBoundingClientRect(); });
+
+  function applyGlow() {
+    glowTicking = false;
+    if (pendingX === null) return;
+    const relX = (pendingX - heroRect.left - heroRect.width / 2) / heroRect.width;
+    const relY = (pendingY - heroRect.top) / heroRect.height;
     heroGlow.style.setProperty("--glow-x", `${relX * 60}px`);
     heroGlow.style.setProperty("--glow-y", `${relY * 40}px`);
-  });
+  }
+
+  hero.addEventListener("mousemove", (e) => {
+    pendingX = e.clientX;
+    pendingY = e.clientY;
+    if (!glowTicking) {
+      glowTicking = true;
+      requestAnimationFrame(applyGlow);
+    }
+  }, { passive: true });
+
   hero.addEventListener("mouseleave", () => {
     heroGlow.style.setProperty("--glow-x", "0px");
     heroGlow.style.setProperty("--glow-y", "0px");
