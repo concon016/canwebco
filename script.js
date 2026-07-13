@@ -121,6 +121,66 @@ function fireConfetti(originEl) {
   }
 }
 
+// Hizmetler sayfasında seçilen hizmetler URL üzerinden (?hizmetler=...) buraya taşınır:
+// iletişim formunun mesaj alanına ve WhatsApp linklerine otomatik ekleniyor.
+const selectedServicesParam = new URLSearchParams(window.location.search).get("hizmetler");
+if (selectedServicesParam) {
+  const selectedServiceNames = selectedServicesParam
+    .split(",")
+    .map((s) => decodeURIComponent(s.trim()))
+    .filter(Boolean);
+
+  if (selectedServiceNames.length) {
+    const messageField = document.querySelector('textarea[name="message"]');
+    if (messageField && !messageField.value) {
+      messageField.value = `İlgilendiğim hizmetler: ${selectedServiceNames.join(", ")}\n\n`;
+    }
+
+    const waText = encodeURIComponent(`Merhaba, ilgilendiğim hizmetler: ${selectedServiceNames.join(", ")}.`);
+    document.querySelectorAll('a[href^="https://wa.me/905324648288"]').forEach((link) => {
+      const base = link.getAttribute("href").split("?")[0];
+      link.setAttribute("href", `${base}?text=${waText}`);
+    });
+  }
+}
+
+// Hizmetler sayfası: seçilebilir hizmet kartları
+const serviceCheckboxes = document.querySelectorAll(".service-checkbox");
+if (serviceCheckboxes.length) {
+  const serviceNudge = document.getElementById("serviceNudge");
+  const serviceContactBtn = document.getElementById("serviceContactBtn");
+  const serviceSelectCount = document.getElementById("serviceSelectCount");
+
+  function updateServiceSelection() {
+    const selected = [];
+    serviceCheckboxes.forEach((checkbox) => {
+      const card = checkbox.closest(".service-card");
+      card.classList.toggle("selected", checkbox.checked);
+      if (checkbox.checked) selected.push(card.dataset.service);
+    });
+
+    if (serviceNudge) {
+      const wantsWebsite = selected.includes("Web Sitesi Tasarımı");
+      const hasComplementary =
+        selected.includes("Haritada Görünürlük") && selected.includes("Google Arama & Reklam Yönetimi");
+      serviceNudge.hidden = !(wantsWebsite && !hasComplementary);
+    }
+
+    if (serviceContactBtn) {
+      serviceContactBtn.href = selected.length
+        ? `iletisim.html?hizmetler=${encodeURIComponent(selected.join(","))}`
+        : "iletisim.html";
+    }
+
+    if (serviceSelectCount) {
+      serviceSelectCount.textContent = selected.length ? `${selected.length} hizmet seçildi` : "";
+    }
+  }
+
+  serviceCheckboxes.forEach((checkbox) => checkbox.addEventListener("change", updateServiceSelection));
+  updateServiceSelection();
+}
+
 // Contact form
 const contactForm = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
