@@ -54,7 +54,8 @@ main {
 [data-theme="dark"] .faq-item,
 [data-theme="dark"] .process-step,
 [data-theme="dark"] .contact-item,
-[data-theme="dark"] .portfolio-card {
+[data-theme="dark"] .portfolio-card,
+[data-theme="dark"] .portfolio-tab {
   background: var(--bg-soft);
   box-shadow: none;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -66,7 +67,7 @@ main {
 
 [data-theme="dark"] .theme-toggle-track { background: #48484a; }
 
-.nav, .service-card, .faq-item, .process-step, .contact-item, .portfolio-card, .btn-secondary {
+.nav, .service-card, .faq-item, .process-step, .contact-item, .portfolio-card, .portfolio-tab, .btn-secondary {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
@@ -720,23 +721,52 @@ section { padding: 100px 24px; }
 /* Portfolio */
 .portfolio { background: var(--bg-soft); }
 
-.portfolio-sector {
+.portfolio-tabs {
   max-width: var(--max);
-  margin: 0 auto 56px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
-.portfolio-sector:last-child { margin-bottom: 0; }
 
-.portfolio-sector-title {
-  font-size: 20px;
+.portfolio-tab {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 4px 24px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.portfolio-tab summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 22px 32px 22px 0;
+  font-size: 19px;
   font-weight: 700;
   letter-spacing: -0.01em;
-  margin: 0 0 20px;
+  position: relative;
+}
+.portfolio-tab summary::-webkit-details-marker { display: none; }
+
+.portfolio-tab summary::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  top: 19px;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--accent);
+  transition: transform 0.2s ease;
+}
+.portfolio-tab[open] summary::after {
+  content: "+";
+  transform: rotate(45deg);
 }
 
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
+  padding-bottom: 28px;
 }
 
 .portfolio-card {
