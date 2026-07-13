@@ -150,6 +150,7 @@ if (serviceCheckboxes.length) {
   const serviceNudge = document.getElementById("serviceNudge");
   const serviceContactBtn = document.getElementById("serviceContactBtn");
   const serviceSelectCount = document.getElementById("serviceSelectCount");
+  const complementaryServices = ["Haritada Görünürlük", "Google Arama & Reklam Yönetimi"];
 
   function updateServiceSelection() {
     const selected = [];
@@ -161,9 +162,21 @@ if (serviceCheckboxes.length) {
 
     if (serviceNudge) {
       const wantsWebsite = selected.includes("Web Sitesi Tasarımı");
-      const hasComplementary =
-        selected.includes("Haritada Görünürlük") && selected.includes("Google Arama & Reklam Yönetimi");
-      serviceNudge.hidden = !(wantsWebsite && !hasComplementary);
+      const missing = complementaryServices.filter((s) => !selected.includes(s));
+      if (wantsWebsite && missing.length) {
+        const list = missing.map((s) => `<strong>${s}</strong>`).join(" ve ");
+        const isPlural = missing.length > 1;
+        serviceNudge.innerHTML = `Sadece <strong>Web Sitesi Tasarımı</strong> seçtiniz — ${list} ${
+          isPlural ? "hizmetlerini" : "hizmetini"
+        } de eklemenizi öneririz. ${
+          isPlural
+            ? "Bunlar, sitenizin gerçekten bulunabilir olması için tamamlayıcı ve önemli hizmetlerdir."
+            : "Bu, sitenizin gerçekten bulunabilir olması için tamamlayıcı ve önemli bir hizmettir."
+        }`;
+        serviceNudge.hidden = false;
+      } else {
+        serviceNudge.hidden = true;
+      }
     }
 
     if (serviceContactBtn) {
