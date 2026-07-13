@@ -209,21 +209,40 @@ if (serviceCheckboxes.length) {
   serviceCheckboxes.forEach((checkbox) => checkbox.addEventListener("change", updateServiceSelection));
   updateServiceSelection();
 
-  if (serviceContactBtn) {
+  const serviceWarningOverlay = document.getElementById("serviceWarningOverlay");
+  const serviceWarningText = document.getElementById("serviceWarningText");
+  const serviceWarningCancel = document.getElementById("serviceWarningCancel");
+  const serviceWarningContinue = document.getElementById("serviceWarningContinue");
+
+  function closeServiceWarning() {
+    if (serviceWarningOverlay) serviceWarningOverlay.hidden = true;
+  }
+
+  if (serviceContactBtn && serviceWarningOverlay) {
     serviceContactBtn.addEventListener("click", (e) => {
       const selected = getSelectedServices();
       const wantsWebsite = selected.includes("Web Sitesi Tasarımı");
       const missing = complementaryServices.filter((s) => !selected.includes(s));
       if (wantsWebsite && missing.length) {
+        e.preventDefault();
         const isPlural = missing.length > 1;
-        const missingText = missing.join(" ve ");
-        const confirmed = confirm(
-          `${missingText} ${isPlural ? "hizmetlerini" : "hizmetini"} seçmediniz. Bu ${
-            isPlural ? "hizmetler sitenizin" : "hizmet sitenizin"
-          } gerçekten bulunabilir olması için önemlidir. Yine de devam etmek istiyor musunuz?`
-        );
-        if (!confirmed) e.preventDefault();
+        const missingText = joinWithVe(missing);
+        serviceWarningText.innerHTML = `${missingText} ${
+          isPlural ? "hizmetlerini" : "hizmetini"
+        } seçmediniz. Bu ${
+          isPlural ? "hizmetler sitenizin" : "hizmet sitenizin"
+        } gerçekten bulunabilir olması için önemlidir. Yine de devam etmek istiyor musunuz?`;
+        serviceWarningContinue.href = serviceContactBtn.href;
+        serviceWarningOverlay.hidden = false;
       }
+    });
+
+    serviceWarningCancel.addEventListener("click", closeServiceWarning);
+    serviceWarningOverlay.addEventListener("click", (e) => {
+      if (e.target === serviceWarningOverlay) closeServiceWarning();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeServiceWarning();
     });
   }
 }
