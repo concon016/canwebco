@@ -671,6 +671,115 @@ section { padding: 100px 24px; }
   .process-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
+/* Blog */
+.blog-grid {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.blog-card {
+  display: block;
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: transform 0.15s ease;
+}
+.blog-card:hover { transform: translateY(-2px); }
+
+.blog-card-meta {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin: 0 0 10px;
+}
+
+.blog-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 10px;
+}
+
+.blog-card p {
+  color: var(--text-soft);
+  font-size: 15px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+[data-theme="dark"] .blog-card {
+  background: var(--bg-soft);
+  box-shadow: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 860px) {
+  .blog-grid { grid-template-columns: 1fr; }
+}
+
+/* Blog — article page */
+.article {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.article-meta {
+  color: var(--text-soft);
+  font-size: 14px;
+  margin: 0 0 12px;
+}
+
+.article h1 {
+  font-size: clamp(30px, 5vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
+}
+
+.article-body h2 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 44px 0 14px;
+}
+
+.article-body p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text);
+  margin: 0 0 18px;
+}
+
+.article-body ul {
+  margin: 0 0 18px;
+  padding-left: 22px;
+  list-style: disc;
+}
+.article-body li {
+  font-size: 17px;
+  line-height: 1.7;
+  margin: 0 0 8px;
+}
+
+.article-cta {
+  margin: 56px 0 0;
+  padding: 32px;
+  background: var(--bg-soft);
+  border-radius: var(--radius);
+  text-align: center;
+}
+.article-cta p {
+  font-size: 17px;
+  margin: 0 0 18px;
+}
+
 /* FAQ */
 .faq { background: var(--bg-soft); }
 
