@@ -11,8 +11,12 @@ function toClient(row) {
     mesaj: row.mesaj,
     replied: row.replied,
     createdAt: row.created_at,
+    durum: row.durum,
+    notlar: row.notlar,
   };
 }
+
+const VALID_DURUM = ["yeni", "teklif_gonderildi", "gorusuluyor", "anlasildi", "reddedildi"];
 
 function requireAdmin(req, res) {
   const key = req.headers["x-admin-key"];
@@ -48,9 +52,22 @@ module.exports = async (req, res) => {
       const id = req.query.id;
       if (!id) return res.status(400).json({ error: "id gerekli." });
       const b = req.body || {};
-      const rows = await sql`
-        UPDATE messages SET replied = ${!!b.replied} WHERE id = ${id} RETURNING *
-      `;
+
+      if (b.durum !== undefined && !VALID_DURUM.includes(b.durum)) {
+        return res.status(400).json({ error: "Geçersiz durum değeri." });
+      }
+
+      let rows;
+      if (b.replied !== undefined) {
+        rows = await sql`UPDATE messages SET replied = ${!!b.replied} WHERE id = ${id} RETURNING *`;
+      } else if (b.durum !== undefined) {
+        rows = await sql`UPDATE messages SET durum = ${b.durum} WHERE id = ${id} RETURNING *`;
+      } else if (b.notlar !== undefined) {
+        rows = await sql`UPDATE messages SET notlar = ${b.notlar} WHERE id = ${id} RETURNING *`;
+      } else {
+        return res.status(400).json({ error: "Güncellenecek bir alan belirtilmedi." });
+      }
+
       if (rows.length === 0) return res.status(404).json({ error: "Mesaj bulunamadı." });
       return res.status(200).json(toClient(rows[0]));
     }

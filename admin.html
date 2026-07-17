@@ -32,8 +32,19 @@
   .btn-reply { background: var(--accent); color: #fff; }
   .btn-toggle { background: var(--border); color: var(--text); }
   .btn-del { background: #d1242f; color: #fff; }
-  .admin-topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+  .admin-topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 10px; }
   .admin-empty { color: var(--text-soft); text-align: center; padding: 40px 0; }
+  .durum-select { border-radius: 999px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 12.5px; font-weight: 600; padding: 5px 10px; cursor: pointer; }
+  .durum-yeni { border-color: #0071e3; color: #0071e3; }
+  .durum-teklif_gonderildi { border-color: #f0b429; color: #b8860b; }
+  .durum-gorusuluyor { border-color: #f0b429; color: #b8860b; }
+  .durum-anlasildi { border-color: #2f9e6e; color: #2f9e6e; }
+  .durum-reddedildi { border-color: #d1242f; color: #d1242f; }
+  .msg-notlar { margin-top: 10px; }
+  .msg-notlar textarea { width: 100%; box-sizing: border-box; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 13px; font-family: inherit; resize: vertical; min-height: 36px; }
+  .durum-filter { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+  .durum-filter button { border: 1px solid var(--border); background: var(--bg-soft); color: var(--text-soft); border-radius: 999px; padding: 6px 14px; font-size: 12.5px; font-weight: 600; cursor: pointer; }
+  .durum-filter button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
   #adminMsg { padding: 10px 14px; border-radius: 10px; font-size: 14px; font-weight: 600; margin-bottom: 16px; display: none; }
   #adminMsg.ok { background: rgba(0,113,227,.12); color: var(--accent); display: block; }
   #adminMsg.err { background: rgba(209,36,47,.12); color: #d1242f; display: block; }
@@ -73,6 +84,14 @@
     <div class="admin-topbar">
       <h2 style="margin:0;">Gelen Mesajlar</h2>
       <span id="msgCount" style="font-size:14px;color:var(--text-soft);"></span>
+    </div>
+    <div class="durum-filter" id="durumFilter">
+      <button data-filter="hepsi" class="active">Hepsi</button>
+      <button data-filter="yeni">Yeni</button>
+      <button data-filter="teklif_gonderildi">Teklif Gönderildi</button>
+      <button data-filter="gorusuluyor">Görüşülüyor</button>
+      <button data-filter="anlasildi">Anlaşıldı</button>
+      <button data-filter="reddedildi">Reddedildi</button>
     </div>
     <div id="msgList"></div>
   </section>
