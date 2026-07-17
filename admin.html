@@ -45,6 +45,14 @@
   .durum-filter { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
   .durum-filter button { border: 1px solid var(--border); background: var(--bg-soft); color: var(--text-soft); border-radius: 999px; padding: 6px 14px; font-size: 12.5px; font-weight: 600; cursor: pointer; }
   .durum-filter button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .reply-box { display: none; margin-top: 14px; padding: 14px; border-radius: 10px; background: var(--bg); border: 1px solid var(--border); }
+  .reply-box.open { display: block; }
+  .reply-box input, .reply-box textarea { width: 100%; box-sizing: border-box; padding: 9px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-soft); color: var(--text); font-size: 13.5px; font-family: inherit; margin-bottom: 8px; }
+  .reply-box textarea { min-height: 100px; resize: vertical; }
+  .reply-box-actions { display: flex; gap: 8px; align-items: center; }
+  .btn-send { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer; }
+  .btn-send:disabled { opacity: .6; cursor: not-allowed; }
+  .reply-status { font-size: 12.5px; color: var(--text-soft); }
   #adminMsg { padding: 10px 14px; border-radius: 10px; font-size: 14px; font-weight: 600; margin-bottom: 16px; display: none; }
   #adminMsg.ok { background: rgba(0,113,227,.12); color: var(--accent); display: block; }
   #adminMsg.err { background: rgba(209,36,47,.12); color: #d1242f; display: block; }

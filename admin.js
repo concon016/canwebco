@@ -78,10 +78,18 @@ function drawList() {
       <div class="msg-email">${m.eposta}</div>
       <div class="msg-body">${m.mesaj}</div>
       <div class="msg-actions">
-        <a class="btn-reply" style="text-decoration:none;" href="mailto:${m.eposta}">Yanıtla</a>
+        <button class="btn-reply" data-reply-open="${m.id}">Yanıtla</button>
         <button class="btn-toggle" data-toggle="${m.id}" data-replied="${m.replied}">${m.replied ? "Yanıtsız İşaretle" : "Yanıtlandı İşaretle"}</button>
         <select class="durum-select durum-${durum}" data-durum-select="${m.id}">${durumOptions}</select>
         <button class="btn-del" data-delete="${m.id}">Sil</button>
+      </div>
+      <div class="reply-box" id="reply-box-${m.id}">
+        <input type="text" placeholder="Konu" data-reply-subject="${m.id}" value="${m.konu ? "Re: " + m.konu : "canwebco - Talebiniz Hakkında"}">
+        <textarea placeholder="Mesajınız..." data-reply-body="${m.id}">Merhaba ${m.adSoyad},\n\n\n\nİyi çalışmalar,\ncanwebco</textarea>
+        <div class="reply-box-actions">
+          <button class="btn-send" data-reply-send="${m.id}" data-reply-to="${m.eposta}">Gönder</button>
+          <span class="reply-status" id="reply-status-${m.id}"></span>
+        </div>
       </div>
       <div class="msg-notlar">
         <textarea placeholder="Not ekle (fiyat teklifi, görüşme tarihi vb.)" data-notlar="${m.id}" rows="1">${m.notlar || ""}</textarea>
@@ -131,6 +139,42 @@ async function updateNotlar(id, notlar) {
   showMsg("Not kaydedildi.", true);
 }
 
+async function sendReply(id, to) {
+  const subjectEl = document.querySelector(`[data-reply-subject="${id}"]`);
+  const bodyEl = document.querySelector(`[data-reply-body="${id}"]`);
+  const sendBtn = document.querySelector(`[data-reply-send="${id}"]`);
+  const statusEl = document.getElementById(`reply-status-${id}`);
+
+  const subject = subjectEl.value.trim();
+  const body = bodyEl.value.trim();
+  if (!subject || !body) {
+    statusEl.textContent = "Konu ve mesaj boş olamaz.";
+    return;
+  }
+
+  sendBtn.disabled = true;
+  statusEl.textContent = "Gönderiliyor...";
+
+  try {
+    const res = await fetch("/api/reply", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-admin-key": adminKey() },
+      body: JSON.stringify({ messageId: id, to, subject, body }),
+    });
+    if (res.status === 401) return unauthorize();
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Bilinmeyen hata");
+
+    statusEl.textContent = "Gönderildi ✓";
+    const m = allMessages.find((x) => String(x.id) === String(id));
+    if (m) m.replied = true;
+    setTimeout(() => drawList(), 800);
+  } catch (err) {
+    statusEl.textContent = "Hata: " + err.message;
+    sendBtn.disabled = false;
+  }
+}
+
 async function deleteMessage(id) {
   if (!confirm("Bu mesajı silmek istediğine emin misin?")) return;
   const res = await fetch(`/api/messages?id=${encodeURIComponent(id)}`, {
@@ -167,7 +211,18 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     const delBtn = e.target.closest("[data-delete]");
-    if (delBtn) deleteMessage(delBtn.dataset.delete);
+    if (delBtn) {
+      deleteMessage(delBtn.dataset.delete);
+      return;
+    }
+    const replyOpenBtn = e.target.closest("[data-reply-open]");
+    if (replyOpenBtn) {
+      const box = document.getElementById(`reply-box-${replyOpenBtn.dataset.replyOpen}`);
+      if (box) box.classList.toggle("open");
+      return;
+    }
+    const sendBtn = e.target.closest("[data-reply-send]");
+    if (sendBtn) sendReply(sendBtn.dataset.replySend, sendBtn.dataset.replyTo);
   });
 
   document.getElementById("msgList").addEventListener("change", (e) => {
