@@ -882,6 +882,15 @@ section { padding: 100px 24px; }
   transform: rotate(45deg);
 }
 
+.portfolio-tab-other {
+  opacity: 0.88;
+}
+.portfolio-tab-other summary {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-soft);
+}
+
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
